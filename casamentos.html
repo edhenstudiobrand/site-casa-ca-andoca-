@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casamentos Intimistas — Casa Caçandoca</title>
+<style>
+  @font-face {
+    font-family: 'TheSeasonsFull';
+    src: url('assets/fonts/theseasons-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * { box-sizing: border-box; }
+  html { overflow-x: hidden; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: #F6F1E6;
+    color: #211F19;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  .cc-serif { font-family: 'TheSeasonsFull', Georgia, serif; font-weight: 300; }
+  .cc-key { font-family: 'TheSeasonsFull', Georgia, serif; font-style: italic; }
+  a { color: inherit; text-decoration: none; }
+  a.cc-link { border-bottom: 1px solid rgba(33,31,25,0.35); padding-bottom: 2px; transition: border-color .2s ease; }
+  a.cc-link:hover { border-color: rgba(33,31,25,0.9); }
+
+  .cc-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 2px; font-family: system-ui, sans-serif; font-size: 15px; letter-spacing: 0.02em; cursor: pointer; border: 1px solid currentColor; transition: background .25s ease, color .25s ease, border-color .25s ease; white-space: nowrap; }
+  .cc-btn-ghost { padding: 10px 22px; font-size: 13.5px; background: transparent; border: 1px solid rgba(246,241,230,0.75); color: #F6F1E6; }
+  .cc-btn-ghost:hover { background: #F6F1E6; color: #211F19; border-color: #F6F1E6; }
+  .cc-btn-ghost-dark { padding: 10px 22px; font-size: 13.5px; background: transparent; border: 1px solid rgba(33,31,25,0.55); color: #211F19; }
+  .cc-btn-ghost-dark:hover { background: #211F19; color: #F6F1E6; border-color: #211F19; }
+  .cc-btn-dark { background: #211F19; color: #F6F1E6; border-color: #211F19; }
+  .cc-btn-dark:hover { background: #3A5041; border-color: #3A5041; }
+
+  .cc-section { padding: 120px 8vw; }
+  @media (max-width: 860px) { .cc-section { padding: 80px 6vw; } }
+
+  .cc-eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #5C6B5E; margin: 0 0 18px; }
+  .cc-h2 { font-family: 'TheSeasonsFull', Georgia, serif; font-weight: 300; font-size: clamp(32px, 4vw, 54px); line-height: 1.1; margin: 0 0 24px; letter-spacing: -0.01em; }
+  .cc-body { font-size: clamp(16px, 1.1vw, 18px); line-height: 1.65; color: #3C3A34; max-width: 46ch; }
+
+  .cc-row { display: flex; gap: 6vw; }
+  @media (max-width: 900px) { .cc-row { flex-direction: column; gap: 48px; } }
+
+  .cc-hero-fixed { position: fixed; inset: 0; z-index: 1; }
+  .cc-spacer { height: 780px; }
+
+  .reveal { opacity: 1; transform: none; }
+  #lugar .reveal, #incluido .reveal, #hospedagem-noivos .reveal, #depoimento .reveal, #ctafinal .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.1s ease, transform 1.1s ease; }
+  #lugar.is-visible .reveal, #incluido.is-visible .reveal, #hospedagem-noivos.is-visible .reveal, #depoimento.is-visible .reveal, #ctafinal.is-visible .reveal { opacity: 1; transform: none; }
+
+  /* O DIA mosaic: each photo fades/scales in on its own, staggered by grid row */
+  #odia .reveal { opacity: 0; transform: translateY(22px) scale(.95); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  #odia.is-visible .reveal { opacity: 1; transform: none; }
+  #odia.is-visible h2.reveal, #odia.is-visible > div.reveal { transition-delay: 0s; }
+  #odia .cc-day-mosaic figure:nth-child(1) { transition-delay: .03s; }
+  #odia .cc-day-mosaic figure:nth-child(2) { transition-delay: .08s; }
+  #odia .cc-day-mosaic figure:nth-child(3) { transition-delay: .13s; }
+  #odia .cc-day-mosaic figure:nth-child(4) { transition-delay: .18s; }
+  #odia .cc-day-mosaic figure:nth-child(5) { transition-delay: .23s; }
+  #odia .cc-day-mosaic figure:nth-child(6) { transition-delay: .28s; }
+  #odia .cc-day-mosaic figure:nth-child(7) { transition-delay: .33s; }
+  #odia .cc-day-mosaic figure:nth-child(8) { transition-delay: .38s; }
+  #odia .cc-day-mosaic figure:nth-child(9) { transition-delay: .43s; }
+  #odia .cc-day-mosaic figure:nth-child(10) { transition-delay: .48s; }
+  #odia .cc-day-mosaic figure:nth-child(11) { transition-delay: .53s; }
+  #odia .cc-day-mosaic figure:nth-child(12) { transition-delay: .58s; }
+  #odia .cc-day-mosaic figure:nth-child(13) { transition-delay: .63s; }
+  #odia .cc-day-mosaic figure:nth-child(14) { transition-delay: .68s; }
+  #odia .cc-day-mosaic figure:nth-child(15) { transition-delay: .73s; }
+  #odia .cc-day-mosaic figure:nth-child(16) { transition-delay: .78s; }
+  #odia .cc-day-mosaic figure:nth-child(17) { transition-delay: .83s; }
+
+  /* COMO FUNCIONA: vertical timeline, each step revealed individually on scroll */
+  #comofunciona h2 { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+  #comofunciona.is-visible h2 { opacity: 1; transform: none; }
+
+  .cc-timeline { position: relative; max-width: 620px; margin: 0 auto; padding-left: 50px; }
+  .cc-timeline-line { position: absolute; left: 19px; top: 8px; bottom: 8px; width: 1px; background: rgba(33,31,25,0.2); }
+  .cc-tl-step { position: relative; display: flex; gap: 28px; align-items: flex-start; padding-bottom: 90px; opacity: 0; transform: translateX(-16px); transition: opacity 1.4s ease, transform 1.4s ease; }
+  .cc-tl-step:last-child { padding-bottom: 0; }
+  .cc-tl-step.is-visible { opacity: 1; transform: none; }
+  .cc-tl-dot {
+    flex: 0 0 40px; width: 40px; height: 40px; border-radius: 50%;
+    background: #F6F1E6; border: 1px solid rgba(70,83,70,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'TheSeasonsFull', Georgia, serif; font-size: 15px; color: #465346;
+    margin-left: -20px; position: relative; z-index: 2;
+    transition: background .9s ease .3s, border-color .9s ease .3s, color .9s ease .3s;
+  }
+  .cc-tl-step.is-visible .cc-tl-dot { background: #465346; border-color: #465346; color: #F6F1E6; }
+  .cc-tl-text h3 { font-size: 18px; margin: 6px 0 8px; font-weight: 600; }
+  .cc-tl-text p { font-size: 14.5px; color: #5C5A52; line-height: 1.6; margin: 0; max-width: 42ch; }
+  @media (max-width: 600px) { .cc-timeline { padding-left: 34px; } .cc-timeline-line { left: 13px; } .cc-tl-dot { flex-basis: 28px; width: 28px; height: 28px; font-size: 12px; margin-left: -14px; } }
+
+  .cc-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 6vw; background: linear-gradient(180deg, rgba(20,20,16,0.55) 0%, rgba(20,20,16,0) 100%); transition: background .3s ease, padding .3s ease, box-shadow .3s ease; }
+  .cc-nav.is-scrolled { background: #F6F1E6; padding: 14px 6vw; box-shadow: 0 2px 14px rgba(0,0,0,0.08); }
+  .cc-nav.is-scrolled .cc-nav-link { color: #211F19 !important; opacity: 1 !important; }
+  .cc-nav.is-scrolled .cc-nav-logo-img { filter: invert(1) brightness(0.15); }
+  .cc-nav.is-scrolled .cc-btn-ghost { color: #211F19; border-color: rgba(33,31,25,0.5); }
+  .cc-nav.is-scrolled .cc-btn-ghost:hover { background: #211F19; color: #F6F1E6; }
+  .cc-nav-logo-img { height: 28px; transition: filter .3s ease; }
+
+  @keyframes cc-fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .cc-hero-text > * { animation: cc-fade-up .9s ease both; }
+  .cc-hero-text > *:nth-child(2) { animation-delay: .15s; }
+  .cc-hero-text > *:nth-child(3) { animation-delay: .3s; }
+  @media (prefers-reduced-motion: reduce) { .cc-hero-text > * { animation: none; } }
+
+  /* O DIA - visual sequence */
+  .cc-day-mosaic { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .cc-day-mosaic figure { margin: 0; overflow: hidden; aspect-ratio: 3 / 4; }
+  .cc-day-mosaic img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform .6s ease; }
+  .cc-day-mosaic figure:hover img { transform: scale(1.05); }
+  @media (max-width: 780px) {
+    .cc-day-mosaic { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* O que inclui */
+  .cc-include-list { list-style: none; padding: 0; margin: 0; max-width: 560px; }
+  .cc-include-list li { padding: 20px 0; border-top: 1px solid rgba(33,31,25,0.15); font-size: 17px; color: #3C3A34; }
+  .cc-include-list li:last-child { border-bottom: 1px solid rgba(33,31,25,0.15); }
+
+  /* Como funciona */
+
+
+  /* Depoimento */
+  .cc-testimonial { max-width: 900px; margin: 0 auto; text-align: center; }
+  .cc-testimonial blockquote { font-family: 'TheSeasonsFull', Georgia, serif; font-size: clamp(18px, 2.1vw, 25px); font-style: italic; line-height: 1.55; margin: 0 0 28px; color: #211F19; white-space: pre-line; }
+  .cc-testimonial cite { font-style: normal; font-size: 14px; color: #5C5A52; letter-spacing: 0.04em; }
+
+  /* Carrossel de fotos */
+  .cc-carousel { display: flex; gap: 18px; overflow-x: auto; padding: 4px 4px 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .cc-carousel::-webkit-scrollbar { display: none; }
+  .cc-carousel-item { flex: 0 0 300px; aspect-ratio: 4 / 5; overflow: hidden; scroll-snap-align: start; }
+  .cc-carousel-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .cc-carousel-item:hover img { transform: scale(1.07); }
+  @media (max-width: 700px) { .cc-carousel-item { flex-basis: 230px; } }
+
+  /* FAQ accordion */
+  .cc-faq { max-width: 760px; margin: 0 auto; }
+  .cc-faq-item { border-bottom: 1px solid rgba(33,31,25,0.15); }
+  .cc-faq-item summary { padding: 24px 4px; font-size: 17px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+  .cc-faq-item summary::-webkit-details-marker { display: none; }
+  .cc-faq-item summary::after { content: '+'; font-size: 22px; font-weight: 300; color: #5C6B5E; transition: transform .3s ease; }
+  .cc-faq-item[open] summary::after { transform: rotate(45deg); }
+  .cc-faq-item p { padding: 0 4px 24px; margin: 0; font-size: 15.5px; line-height: 1.6; color: #4A4740; max-width: 62ch; }
+</style>
+</head>
+<body>
+
+<div style="width: 100%; position: relative;">
+
+  <div class="cc-nav" id="ccNav">
+    <a href="index.html"><img class="cc-nav-logo-img" src="assets/img/logo-nav.png" alt="Casa Caçandoca"></a>
+    <div style="display: flex; align-items: center; gap: 22px;">
+      <a class="cc-link cc-nav-link" href="https://instagram.com/casacacandoca" style="color: #F6F1E6; font-size: 14.5px; opacity: 0.92; display: inline-flex; align-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 5px; flex-shrink: 0;"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@casacacandoca</a>
+      <a href="https://wa.me/5512991602656?text=Ol%C3%A1%21%20Quero%20conversar%20sobre%20o%20meu%20casamento." class="cc-btn cc-btn-ghost">WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="cc-hero-fixed" style="height: 780px; overflow: hidden;">
+    <div style="position: relative; width: 100%; height: 780px; overflow: hidden;">
+      <video id="heroVideo" autoplay muted loop playsinline style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+        <source src="assets/video/casamentos-hero.mp4" type="video/mp4">
+      </video>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,24,18,0.45) 0%, rgba(20,24,18,0.2) 40%, rgba(20,24,18,0.72) 100%);"></div>
+      <div class="cc-hero-text" style="position: relative; z-index: 5; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 6vw;">
+        <p style="color: #E7E3D4; font-size: 12.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 22px;">Casamentos Intimistas</p>
+        <h1 class="cc-serif" style="color: #F6F1E6; font-size: clamp(30px, 4.6vw, 56px); font-weight: 300; margin: 0 0 20px; letter-spacing: -0.01em; line-height: 1.2; max-width: 16ch;">Existem lugares que recebem casamentos.<br>E existem lugares que fazem esse dia se tornar <em class="cc-key">inesquecível</em>.</h1>
+        <a href="https://wa.me/5512991602656?text=Ol%C3%A1%21%20Quero%20conversar%20sobre%20o%20meu%20casamento." class="cc-btn cc-btn-ghost" style="margin-top: 16px;">Conversar sobre o meu casamento</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-spacer"></div>
+
+  <!-- O LUGAR -->
+  <div class="cc-section" id="lugar" style="position: relative; z-index: 20; background: #F6F1E6; min-height: 100vh; display: flex; align-items: center;">
+    <div class="cc-row reveal" style="align-items: center; width: 100%;">
+      <div style="flex: 0 0 54%;">
+        <img src="assets/img/casamentos/arco-cerimonia.jpg" alt="Arco de cerimônia decorado com flores tropicais e vista para o mar" style="width: 100%; height: 560px; object-fit: cover; display: block;">
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+        <p class="cc-eyebrow">O lugar</p>
+        <h2 class="cc-h2">Um cenário que faz parte da celebração.</h2>
+        <p class="cc-body" style="margin-bottom: 20px;">Em meio à natureza preservada da Caçandoca, a casa acompanha a paisagem e revela, em cada nível, uma nova vista para o mar.</p>
+        <p class="cc-body"><strong>Até 80 convidados</strong>, entre cerimônia e festa.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- O DIA -->
+  <div class="cc-section" id="odia" style="position: relative; z-index: 30; background: #EFE8D8; min-height: 100vh;">
+    <div class="reveal" style="max-width: 640px; margin: 0 auto 56px; text-align: center;">
+      <h2 class="cc-h2">O casamento começa antes da cerimônia.<br>E termina muito depois dela.</h2>
+    </div>
+    <div class="cc-day-mosaic">
+      <figure class="reveal"><img src="assets/img/casamentos/casal-palmeira-hd.jpg" alt="Noivos sob a palmeira, testa com testa" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/arco-cerimonia.jpg" alt="Arco de cerimônia decorado com flores tropicais" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/noiva-janela.jpg" alt="Noiva observando a paisagem pela janela"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/noiva-contraluz-hd.jpg" alt="Noiva em contraluz ao pôr do sol" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/vestido.jpg" alt="Vestido de noiva pendurado junto à janela" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/buque-hd.jpg" alt="Noiva sorrindo com buquê de rosas vermelhas"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/beijo-confete-hd.jpg" alt="Beijo dos noivos sob chuva de confete" style="object-position: center 30%;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/casa-noite.jpg" alt="Casa iluminada à noite durante a festa"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/mesa-1.jpg" alt="Mesa posta para o jantar"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/mesa-2.jpg" alt="Detalhe da decoração da mesa"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/mesa-3.jpg" alt="Mesa posta vista de cima"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/prep-1.jpg" alt="Noivo se preparando para a cerimônia" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/prep-2.jpg" alt="Padrinhos se preparando para a cerimônia" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/prep-3.jpg" alt="Padrinho a caminho da cerimônia" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/prep-4.jpg" alt="Madrinha com buquê de flores" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/bride-closeup-hd.jpg" alt="Retrato artístico da noiva" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/mao-beijo-hd.jpg" alt="Noivo beijando a mão da noiva no altar" style="object-position: center top;"></figure>
+      <figure class="reveal"><img src="assets/img/casamentos/votos-hd.jpg" alt="Noivo lendo os votos no altar, com o mar ao fundo"></figure>
+    </div>
+  </div>
+
+  <!-- O QUE INCLUI -->
+  <div class="cc-section" id="incluido" style="position: relative; z-index: 40; background: #F6F1E6; min-height: 70vh; display: flex; align-items: center;">
+    <div class="reveal" style="width: 100%; text-align: center;">
+      <p class="cc-eyebrow" style="text-align: center;">A casa para o seu dia</p>
+      <h2 class="cc-h2" style="margin-bottom: 40px;">O que está incluído</h2>
+      <ul class="cc-include-list" style="margin: 0 auto; text-align: left;">
+        <li>Mobiliário da casa para composição da celebração</li>
+        <li>Banheirista e apoio por 8 horas de evento</li>
+        <li>Estrutura pronta para montagem personalizada</li>
+      </ul>
+      <p style="margin-top: 24px; font-size: 14px; color: #8B8879;">Serviços adicionais podem ser contratados à parte.</p>
+    </div>
+  </div>
+
+  <!-- HOSPEDAGEM DOS NOIVOS -->
+  <div class="cc-section" id="hospedagem-noivos" style="position: relative; z-index: 50; background: #465346; color: #F6F1E6; min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
+    <div class="reveal" style="width: 100%; text-align: center; margin-bottom: 48px;">
+      <p class="cc-eyebrow" style="color: #B9C7B4; text-align: center;">Hospedagem dos noivos</p>
+      <h2 class="cc-h2" style="color: #F6F1E6;">E se o casamento não precisasse terminar quando a festa acabasse?</h2>
+      <p class="cc-body" style="color: #E4E9DF; font-size: 14.5px; line-height: 1.6; margin: 0 auto;">A casa principal fica disponível para os noivos de sexta a domingo — para viver o fim de semana inteiro, não só a noite da festa. Além da casa principal, a propriedade conta com 2 lofts externos, contratados à parte, que juntos elevam a capacidade total para <strong>até 20 pessoas</strong> hospedadas.</p>
+    </div>
+    <div class="cc-carousel reveal">
+      <div class="cc-carousel-item"><img src="assets/img/quarto.jpg" alt="Suíte da Casa Caçandoca com vista para o mar"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/escada-interna.png" alt="Escada interna da casa"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/quarto-toalhas.png" alt="Suíte com cama de casal e toalhas"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/varanda-mesa.png" alt="Varanda com mesa e vista para o mar"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/escada-externa.png" alt="Escada externa entre os jardins da casa"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/varanda-vista.png" alt="Vista da varanda para a baía"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/jardim-piscina.png" alt="Jardim e piscina com vista para a baía"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/deck-piscina.png" alt="Deck da piscina com vista para o mar"></div>
+      <div class="cc-carousel-item"><img src="assets/img/hospedagem-carrossel/hospede-cama.jpg" alt="Hóspede descansando com vista para o mar"></div>
+    </div>
+  </div>
+
+  <!-- COMO FUNCIONA -->
+  <div class="cc-section" id="comofunciona" style="position: relative; z-index: 60; background: #EFE8D8; min-height: 140vh;">
+    <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+      <h2 class="cc-h2">Como funciona</h2>
+    </div>
+    <div class="cc-timeline">
+      <div class="cc-timeline-line"></div>
+      <div class="cc-tl-step" data-step="1"><span class="cc-tl-dot">01</span><div class="cc-tl-text"><h3>Conversa</h3><p>Contamos como funciona e entendemos o que você imagina para o seu dia.</p></div></div>
+      <div class="cc-tl-step" data-step="2"><span class="cc-tl-dot">02</span><div class="cc-tl-text"><h3>Visita</h3><p>Conhecer a casa pessoalmente ajuda a imaginar cada momento do seu casamento.</p></div></div>
+      <div class="cc-tl-step" data-step="3"><span class="cc-tl-dot">03</span><div class="cc-tl-text"><h3>Proposta</h3><p>Montamos uma proposta sob medida para o número de convidados e o formato do seu evento.</p></div></div>
+      <div class="cc-tl-step" data-step="4"><span class="cc-tl-dot">04</span><div class="cc-tl-text"><h3>Reserva</h3><p>Com a proposta aprovada, sua data fica reservada na Casa Caçandoca.</p></div></div>
+    </div>
+  </div>
+
+  <!-- DEPOIMENTO -->
+  <div style="position: relative; height: 180vh;">
+    <div id="depoimento" style="position: sticky; top: 0; height: 100vh; z-index: 70; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+      <video id="depoimentoVideo" autoplay muted loop playsinline style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+        <source src="assets/video/cta-final-beijo.mp4" type="video/mp4">
+      </video>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,20,16,0.55) 0%, rgba(20,20,16,0.35) 45%, rgba(20,20,16,0.7) 100%);"></div>
+      <div class="cc-testimonial reveal" style="position: relative; z-index: 2; padding: 0 6vw;">
+        <blockquote style="color: #F6F1E6;">"Da primeira conversa até o último brinde,<br>cada detalhe pareceu pensado pra gente.<br>O pôr do sol durante a cerimônia foi<br>exatamente como a gente sonhou."</blockquote>
+        <cite style="color: #D8D9CE;">— Marina &amp; Thiago, casamento na Caçandoca</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="cc-section" style="position: relative; z-index: 80; background: #EFE8D8; min-height: 70vh;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <h2 class="cc-h2">Perguntas frequentes</h2>
+    </div>
+    <div class="cc-faq">
+      <details class="cc-faq-item" open>
+        <summary>Qual a capacidade da casa para casamentos?</summary>
+        <p>Até 80 convidados, entre cerimônia e festa.</p>
+      </details>
+      <details class="cc-faq-item">
+        <summary>É possível contratar fornecedores externos?</summary>
+        <p>Sim — buffet, decoração, música e demais fornecedores podem ser escolhidos por vocês.</p>
+      </details>
+      <details class="cc-faq-item">
+        <summary>A cerimônia e a recepção acontecem no mesmo local?</summary>
+        <p>Sim, a casa foi pensada para que cerimônia e festa aconteçam no mesmo espaço, sem deslocamentos.</p>
+      </details>
+      <details class="cc-faq-item">
+        <summary>A hospedagem está incluída?</summary>
+        <p>A casa principal fica disponível para os noivos de sexta a domingo. Conversamos sobre os detalhes na proposta.</p>
+      </details>
+      <details class="cc-faq-item">
+        <summary>Como funciona a reserva?</summary>
+        <p>Depois da proposta aprovada, formalizamos a reserva da sua data. Os valores e condições de pagamento são tratados diretamente na conversa.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div id="ctafinal" style="position: relative; z-index: 90; min-height: 100vh; overflow: hidden; background-image: url('assets/img/casamentos/casal-por-do-sol.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div style="background: linear-gradient(180deg, rgba(20,20,16,0.35) 0%, rgba(20,20,16,0.3) 45%, rgba(20,20,16,0.65) 100%); position: absolute; inset: 0;"></div>
+    <div class="reveal" style="position: relative; z-index: 2; padding: 0 6vw;">
+      <p style="color: #E7E3D4; font-size: 12.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 22px;">Casamentos Intimistas</p>
+      <h2 class="cc-serif" style="color: #F6F1E6; font-size: clamp(28px, 3.8vw, 44px); font-weight: 300; margin: 0 0 32px; line-height: 1.35;">Para o dia mais feliz da sua vida,<br>você só precisa de duas coisas:<br><br>As pessoas que você ama<br>e um lugar para recebê-las.</h2>
+      <a href="https://wa.me/5512991602656?text=Ol%C3%A1%21%20Quero%20conversar%20sobre%20o%20meu%20casamento." class="cc-btn cc-btn-ghost">Falar com a casa</a>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div style="position: relative; z-index: 95; background: #1B1A16; color: #DCD9CB; padding: 70px 6vw 34px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; padding-bottom: 46px; border-bottom: 1px solid rgba(220,217,203,0.14);">
+      <div style="flex: 1 1 220px;">
+        <img src="assets/img/logo-nav.png" alt="Casa Caçandoca" style="height: 40px; margin-bottom: 18px;">
+        <p style="font-size: 14px; line-height: 1.6; color: #ADA99A; max-width: 30ch; margin: 0;">Uma casa entre a mata e o mar, na Praia da Caçandoca, Ubatuba — SP.</p>
+      </div>
+      <div style="flex: 1 1 200px;">
+        <p style="font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #8B8879; margin: 0 0 16px;">Contato</p>
+        <p style="margin: 0 0 10px; font-size: 14.5px;"><a class="cc-link" href="https://wa.me/5512991602656">(12) 99160-2656</a></p>
+        <p style="margin: 0 0 10px; font-size: 14.5px;"><a class="cc-link" href="mailto:contato@casacacandoca.com.br">contato@casacacandoca.com.br</a></p>
+        <p style="margin: 0; font-size: 14.5px;"><a class="cc-link" href="https://instagram.com/casacacandoca" style="display: inline-flex; align-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 5px; flex-shrink: 0;"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@casacacandoca</a></p>
+      </div>
+      <div style="flex: 1 1 200px;">
+        <p style="font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #8B8879; margin: 0 0 16px;">Navegação</p>
+        <p style="margin: 0 0 10px; font-size: 14.5px;"><a class="cc-link" href="index.html">Página inicial</a></p>
+        <p style="margin: 0; font-size: 14.5px;"><a class="cc-link" href="hospedagem.html">Hospedagem</a></p>
+      </div>
+      <div style="flex: 1 1 200px;">
+        <p style="font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #8B8879; margin: 0 0 16px;">Endereço</p>
+        <p style="margin: 0; font-size: 14.5px; color: #DCD9CB;">Praia da Caçandoca<br>Ubatuba — SP, Brasil</p>
+      </div>
+    </div>
+    <p style="font-size: 12.5px; color: #77745F; margin: 24px 0 0;">© Casa Caçandoca. Todos os direitos reservados.</p>
+  </div>
+
+  <div style="position: relative; z-index: 96; background: #1B1A16; text-align: center; padding: 8px 6vw 48px;">
+    <p style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6858; margin: 0 0 14px;">Feito por</p>
+    <img src="assets/img/edhen-logo.png" alt="Edhen Studio" style="height: 34px; display: block; margin: 0 auto 12px; opacity: 0.85;">
+    <p style="font-size: 11.5px; color: #6B6858; margin: 0;">@edhen.studiobrand</p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var nav = document.getElementById('ccNav');
+  function onScrollNav() {
+    if (window.scrollY > 90) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScrollNav, { passive: true });
+  onScrollNav();
+
+  var targets = ['lugar', 'odia', 'incluido', 'hospedagem-noivos', 'comofunciona', 'depoimento', 'ctafinal'];
+  if ('IntersectionObserver' in window) {
+    targets.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30% 0px' });
+      io.observe(el);
+    });
+  } else {
+    targets.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.add('is-visible');
+    });
+  }
+
+  // Timeline steps: each one reveals individually as it's scrolled to
+  var tlSteps = document.querySelectorAll('.cc-tl-step');
+  if ('IntersectionObserver' in window && tlSteps.length) {
+    var tlIo = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          tlIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '0px 0px -15% 0px' });
+    tlSteps.forEach(function(el) { tlIo.observe(el); });
+  } else {
+    tlSteps.forEach(function(el) { el.classList.add('is-visible'); });
+  }
+
+  // Video sound: hero plays near the top, depoimento plays only once scrolled to it —
+  // never both at once, and never bleeding through the sections in between.
+  var hasInteracted = false;
+  var heroVideo = document.getElementById('heroVideo');
+  var depoimentoVideo = document.getElementById('depoimentoVideo');
+  var depoimentoEl = document.getElementById('depoimento');
+  var depoimentoVisible = false;
+
+  function syncAudio() {
+    var heroShouldPlay = hasInteracted && window.scrollY < 700;
+    var depoimentoShouldPlay = hasInteracted && depoimentoVisible;
+    if (heroVideo) {
+      if (heroShouldPlay) { heroVideo.muted = false; heroVideo.play().catch(function(){}); }
+      else { heroVideo.muted = true; }
+    }
+    if (depoimentoVideo) {
+      if (depoimentoShouldPlay) { depoimentoVideo.muted = false; depoimentoVideo.play().catch(function(){}); }
+      else { depoimentoVideo.muted = true; }
+    }
+  }
+  function markInteracted() {
+    if (hasInteracted) return;
+    hasInteracted = true;
+    syncAudio();
+    ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
+      window.removeEventListener(evt, markInteracted);
+    });
+  }
+  ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
+    window.addEventListener(evt, markInteracted, { passive: true });
+  });
+  window.addEventListener('scroll', syncAudio, { passive: true });
+
+  if (depoimentoEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) { depoimentoVisible = entry.isIntersecting; });
+      syncAudio();
+    }, { threshold: 0.4 }).observe(depoimentoEl);
+  }
+})();
+</script>
+</body>
+</html>
